@@ -1,10 +1,11 @@
-const PostDetail = () => {
+const PostDetail = (props) => {
+  const { title, timestamp, body, nComments } = props;
   return (
     <div className="PostDetail">
-      <h2>Post Title</h2>
-      <div>published timestamp</div>
-      <p>Truncated post body. (100 chars or something)</p>
-      <div>no. of comments</div>
+      <h2>{title}</h2>
+      <div>{timestamp}</div>
+      <p>{body}</p>
+      <div>{nComments}</div>
     </div>
   );
 };

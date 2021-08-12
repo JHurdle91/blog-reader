@@ -1,9 +1,9 @@
-import PostDetail from "./components/PostDetail";
+import PostList from "./components/PostList";
 
 const App = () => {
   return (
     <div className="App">
-      <PostDetail />
+      <PostList />
     </div>
   );
 };
