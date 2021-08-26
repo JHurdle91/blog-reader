@@ -1,7 +1,7 @@
-const PostDetail = (props) => {
+const PostListItem = (props) => {
   const { title, timestamp, body, nComments } = props;
   return (
-    <div className="PostDetail">
+    <div className="PostListItem">
       <h2>{title}</h2>
       <div>{timestamp}</div>
       <p>{body}</p>
@@ -10,4 +10,4 @@ const PostDetail = (props) => {
   );
 };
 
-export default PostDetail;
+export default PostListItem;
