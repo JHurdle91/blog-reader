@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 
 import { getPost } from "../data/source/blogApi";
+import Comments from "./Comments";
 
 const PostDetail = () => {
   const [post, setPost] = useState({
@@ -14,14 +15,14 @@ const PostDetail = () => {
     },
   });
 
-  const { id } = useParams();
+  const { postId } = useParams();
 
   useEffect(() => {
     const pullPost = async () => {
-      setPost(await getPost(id));
+      setPost(await getPost(postId));
     };
     pullPost();
-  }, [id]);
+  }, [postId]);
 
   let { title, timestamp, text, user } = post;
   return (
@@ -32,8 +33,8 @@ const PostDetail = () => {
       <hr />
       <div>{text}</div>
       <hr />
-      <div>TODO: add comments</div>
-      <div>TODO: display comments</div>
+      <h2>Comments</h2>
+      <Comments />
     </div>
   );
 };

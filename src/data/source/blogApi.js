@@ -12,4 +12,12 @@ const getPosts = async () => {
   return posts;
 };
 
-export { getPost, getPosts };
+const getComments = async (postId) => {
+  const response = await fetch(`${API_URL}/posts/${postId}/comments`, {
+    mode: "cors",
+  });
+  const comments = await response.json();
+  return comments;
+};
+
+export { getPost, getPosts, getComments };
