@@ -23,9 +23,8 @@ const Comments = () => {
       {comments.map((comment) => {
         const { timestamp, text, user, _id } = comment;
         return (
-          <div>
+          <div key={uniqid()}>
             <Comment
-              key={uniqid()}
               id={_id}
               timestamp={timestamp}
               text={text}

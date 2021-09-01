@@ -20,9 +20,8 @@ const PostList = () => {
       {posts.map((post) => {
         const { title, timestamp, text, _id } = post;
         return (
-          <div>
+          <div key={uniqid()}>
             <PostListItem
-              key={uniqid()}
               id={_id}
               title={title}
               timestamp={timestamp}
