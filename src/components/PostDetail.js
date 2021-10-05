@@ -1,8 +1,10 @@
 import { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 
 import { getPost } from "../data/source/blogApi";
 import Comments from "./Comments";
+import CommentForm from "./CommentForm";
+import AuthService from "../services/auth.service";
 
 const PostDetail = () => {
   const [post, setPost] = useState({
@@ -14,6 +16,12 @@ const PostDetail = () => {
       password: "",
     },
   });
+  const [currentUser, setCurrentUser] = useState(undefined);
+
+  useEffect(() => {
+    const user = AuthService.getCurrentUser();
+    if (user) setCurrentUser(user);
+  }, []);
 
   const { postId } = useParams();
 
@@ -34,6 +42,19 @@ const PostDetail = () => {
       <div>{text}</div>
       <hr />
       <h2>Comments</h2>
+      {currentUser ? (
+        <CommentForm />
+      ) : (
+        <div>
+          <br />
+          <Link to={"/login"}>
+            <strong>Log in</strong>
+          </Link>{" "}
+          to leave a comment.
+          <br />
+          <br />
+        </div>
+      )}
       <Comments />
     </div>
   );
