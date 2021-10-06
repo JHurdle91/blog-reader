@@ -20,12 +20,12 @@ const Comments = () => {
   return (
     <div className="Comments">
       {comments.map((comment) => {
-        const { timestamp, text, user, _id } = comment;
+        const { timestamp_formatted, text, user, _id } = comment;
         return (
           <div key={uniqid()}>
             <Comment
               id={_id}
-              timestamp={timestamp}
+              timestamp={timestamp_formatted}
               text={text}
               user={user.username}
             />

@@ -10,6 +10,7 @@ const PostDetail = () => {
   const [post, setPost] = useState({
     title: "",
     timestamp: "",
+    timestamp_formatted: "",
     text: "",
     user: {
       username: "",
@@ -29,12 +30,12 @@ const PostDetail = () => {
     if (user) setCurrentUser(user);
   }, [postId]);
 
-  let { title, timestamp, text, user } = post;
+  let { title, timestamp_formatted, text, user } = post;
   return (
     <div className="PostDetail">
       <h1>{title}</h1>
       <div>- {user.username}</div>
-      <div>{timestamp}</div>
+      <div>{timestamp_formatted}</div>
       <hr />
       <div>{text}</div>
       <hr />
