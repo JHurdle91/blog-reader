@@ -1,10 +1,10 @@
 import { useState, useEffect } from "react";
 import { useParams, Link } from "react-router-dom";
 
-import { getPost } from "../data/source/blogApi";
 import Comments from "./Comments";
 import CommentForm from "./CommentForm";
 import AuthService from "../services/auth.service";
+import UserService from "../services/user.service";
 
 const PostDetail = () => {
   const [post, setPost] = useState({
@@ -18,18 +18,15 @@ const PostDetail = () => {
   });
   const [currentUser, setCurrentUser] = useState(undefined);
 
-  useEffect(() => {
-    const user = AuthService.getCurrentUser();
-    if (user) setCurrentUser(user);
-  }, []);
-
   const { postId } = useParams();
 
   useEffect(() => {
-    const pullPost = async () => {
-      setPost(await getPost(postId));
-    };
-    pullPost();
+    UserService.getPost(postId).then((response) => {
+      setPost(response.data);
+    });
+
+    const user = AuthService.getCurrentUser();
+    if (user) setCurrentUser(user);
   }, [postId]);
 
   let { title, timestamp, text, user } = post;

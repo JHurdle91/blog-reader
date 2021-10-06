@@ -2,7 +2,6 @@ import axios from "axios";
 import authHeader from "./auth-header";
 
 // TODO: post user comments with authHeader
-// TODO: move all api calls here
 
 const API_URL = process.env.REACT_APP_API_URL;
 
@@ -22,11 +21,26 @@ const getAdminBoard = () => {
   return axios.get(`${API_URL}/test/admin`, { headers: authHeader() });
 };
 
+const getPosts = () => {
+  return axios.get(`${API_URL}/posts`);
+};
+
+const getPost = (id) => {
+  return axios.get(`${API_URL}/posts/${id}`);
+};
+
+const getComments = (postId) => {
+  return axios.get(`${API_URL}/posts/${postId}/comments`);
+};
+
 const UserService = {
   getPublicContent,
   getUserBoard,
   getModeratorBoard,
   getAdminBoard,
+  getPosts,
+  getPost,
+  getComments,
 };
 
 export default UserService;

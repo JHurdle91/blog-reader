@@ -2,17 +2,16 @@ import uniqid from "uniqid";
 
 import { useState, useEffect } from "react";
 
-import { getPosts } from "../data/source/blogApi";
+import UserService from "../services/user.service";
 import PostListItem from "./PostListItem";
 
 const PostList = () => {
   const [posts, setPosts] = useState([]);
 
   useEffect(() => {
-    const pullPosts = async () => {
-      setPosts(await getPosts());
-    };
-    pullPosts();
+    UserService.getPosts().then((response) => {
+      setPosts(response.data);
+    });
   }, []);
 
   return (

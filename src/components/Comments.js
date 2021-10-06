@@ -3,7 +3,7 @@ import uniqid from "uniqid";
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 
-import { getComments } from "../data/source/blogApi";
+import UserService from "../services/user.service";
 import Comment from "./Comment";
 
 const Comments = () => {
@@ -12,10 +12,9 @@ const Comments = () => {
   const { postId } = useParams();
 
   useEffect(() => {
-    const pullComments = async () => {
-      setComments(await getComments(postId));
-    };
-    pullComments();
+    UserService.getComments(postId).then((response) => {
+      setComments(response.data);
+    });
   }, [postId]);
 
   return (
