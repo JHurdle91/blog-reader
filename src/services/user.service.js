@@ -33,6 +33,16 @@ const getComments = (postId) => {
   return axios.get(`${API_URL}/posts/${postId}/comments`);
 };
 
+const postComment = (postId, userId, text) => {
+  return axios.post(`${API_URL}/posts/${postId}/comments/create`, {
+    params: {
+      postId,
+      userId,
+      text,
+    },
+  });
+};
+
 const UserService = {
   getPublicContent,
   getUserBoard,
@@ -41,6 +51,7 @@ const UserService = {
   getPosts,
   getPost,
   getComments,
+  postComment,
 };
 
 export default UserService;
