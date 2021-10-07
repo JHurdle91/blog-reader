@@ -33,3 +33,7 @@ label {
 .PostList, .PostDetail {
   margin: 0 20px;
 }
+
+.navbar-brand {
+  margin-left: 10px;
+}
