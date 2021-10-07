@@ -16,11 +16,15 @@ const PostListItem = (props) => {
     window.location.href = `/posts/${_id}`;
   };
 
+  const CHAR_LIMIT = 100;
+  const truncated_text =
+    text.length >= CHAR_LIMIT ? text.substring(0, CHAR_LIMIT) + "..." : text;
+
   return (
     <div className="PostListItem" onClick={handleClick}>
       <h2>{title}</h2>
       <div>{timestamp_formatted}</div>
-      <p>{text}</p>
+      <p>{truncated_text}</p>
       {comments.length === 1 ? (
         <div>1 comment</div>
       ) : (

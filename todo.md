@@ -1,6 +1,3 @@
-- display comment count on post list
-- truncate post body on post list
-		- 100 char max
 - hide unpublished posts
 - admin board
 	- toggle "published"
