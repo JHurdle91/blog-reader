@@ -17,12 +17,16 @@ const PostList = () => {
   return (
     <div className="PostList">
       {posts.map((post) => {
-        return (
-          <div key={uniqid()}>
-            <PostListItem post={post} />
-            <hr />
-          </div>
-        );
+        if (post.published) {
+          return (
+            <div key={uniqid()}>
+              <PostListItem post={post} />
+              <hr />
+            </div>
+          );
+        } else {
+          return null;
+        }
       })}
     </div>
   );
