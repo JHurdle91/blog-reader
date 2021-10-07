@@ -17,16 +17,9 @@ const PostList = () => {
   return (
     <div className="PostList">
       {posts.map((post) => {
-        const { title, timestamp_formatted, text, _id } = post;
         return (
           <div key={uniqid()}>
-            <PostListItem
-              id={_id}
-              title={title}
-              timestamp={timestamp_formatted}
-              body={text}
-              nComments={5}
-            />
+            <PostListItem post={post} />
             <hr />
           </div>
         );
