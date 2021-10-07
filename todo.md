@@ -1,4 +1,3 @@
-- hide unpublished posts
 - admin board
 	- toggle "published"
 	- create posts
