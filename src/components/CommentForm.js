@@ -31,20 +31,20 @@ const CommentForm = (props) => {
   return (
     <div className="CommentForm">
       <form onSubmit={handleSubmit}>
-        <div class="form-group">
-          <label for="commentBox">Leave a comment:</label>
+        <div className="form-group">
+          <label htmlFor="commentBox">Leave a comment:</label>
           <br />
           <textarea
             id="commentBox"
             name="commentBox"
             onChange={onChangeText}
-            class="form-control"
+            className="form-control"
             type="textarea"
             placeholder="What an excellent post!"
-            required="true"
+            required
           ></textarea>
         </div>
-        <button class="btn btn-primary" type="submit">
+        <button className="btn btn-primary" type="submit">
           Submit
         </button>
         <br />

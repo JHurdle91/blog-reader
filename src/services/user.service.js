@@ -1,8 +1,6 @@
 import axios from "axios";
 import authHeader from "./auth-header";
 
-// TODO: post user comments with authHeader
-
 const API_URL = process.env.REACT_APP_API_URL;
 
 const getPublicContent = () => {
@@ -34,13 +32,21 @@ const getComments = (postId) => {
 };
 
 const postComment = (postId, userId, text) => {
-  return axios.post(`${API_URL}/posts/${postId}/comments/create`, {
-    params: {
-      postId,
-      userId,
-      text,
+  return axios.post(
+    `${API_URL}/posts/${postId}/comments/create`,
+    {
+      params: {
+        postId,
+        userId,
+        text,
+      },
     },
-  });
+    { headers: authHeader() }
+  );
+};
+
+const togglePublished = (postId) => {
+  return axios.post(`${API_URL}/posts/${postId}/published`);
 };
 
 const UserService = {
@@ -52,6 +58,7 @@ const UserService = {
   getPost,
   getComments,
   postComment,
+  togglePublished,
 };
 
 export default UserService;
