@@ -1,5 +1,4 @@
 import axios from "axios";
-import authHeader from "./auth-header";
 
 const API_URL = process.env.REACT_APP_API_URL;
 
@@ -8,15 +7,15 @@ const getPublicContent = () => {
 };
 
 const getUserBoard = () => {
-  return axios.get(`${API_URL}/test/user`, { headers: authHeader() });
+  return axios.get(`${API_URL}/test/user`);
 };
 
 const getModeratorBoard = () => {
-  return axios.get(`${API_URL}/test/mod`, { headers: authHeader() });
+  return axios.get(`${API_URL}/test/mod`);
 };
 
 const getAdminBoard = () => {
-  return axios.get(`${API_URL}/test/admin`, { headers: authHeader() });
+  return axios.get(`${API_URL}/test/admin`);
 };
 
 const getPosts = () => {
@@ -32,17 +31,13 @@ const getComments = (postId) => {
 };
 
 const postComment = (postId, userId, text) => {
-  return axios.post(
-    `${API_URL}/posts/${postId}/comments/create`,
-    {
-      params: {
-        postId,
-        userId,
-        text,
-      },
+  return axios.post(`${API_URL}/posts/${postId}/comments/create`, {
+    params: {
+      postId,
+      userId,
+      text,
     },
-    { headers: authHeader() }
-  );
+  });
 };
 
 const togglePublished = (postId) => {
