@@ -1,5 +1,4 @@
 - admin board
-	- toggle "published"
 	- create posts
 	- delete posts
 	- delete comments
