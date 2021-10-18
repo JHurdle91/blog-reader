@@ -44,6 +44,10 @@ const postComment = (postId, userId, text) => {
   });
 };
 
+const deleteComment = (postId, commentId) => {
+  return axios.post(`${API_URL}/posts/${postId}/comments/${commentId}/delete`);
+};
+
 const togglePublished = (postId) => {
   return axios.post(`${API_URL}/posts/${postId}/published`);
 };
@@ -57,6 +61,7 @@ const UserService = {
   getPost,
   deletePost,
   getComments,
+  deleteComment,
   postComment,
   togglePublished,
 };

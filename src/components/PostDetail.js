@@ -9,6 +9,7 @@ import UserService from "../services/user.service";
 
 const PostDetail = () => {
   const [admin, setAdmin] = useState(false);
+  const [currentUser, setCurrentUser] = useState(undefined);
   const [post, setPost] = useState({
     title: "",
     timestamp: "",
@@ -20,7 +21,6 @@ const PostDetail = () => {
       password: "",
     },
   });
-  const [published, setPublished] = useState(post.published);
 
   const { postId } = useParams();
 
@@ -34,12 +34,14 @@ const PostDetail = () => {
       const roles = [];
       user.roles.map((role) => roles.push(role.name));
       setAdmin(roles.includes("ROLE_ADMIN"));
+      setCurrentUser(user);
     }
   }, [postId]);
 
+  const [published, setPublished] = useState(post.published);
   useEffect(() => {
     setPublished(post.published);
-  }, [post]);
+  }, [post.published]);
 
   const handleChange = () => {
     UserService.togglePublished(postId);
@@ -78,7 +80,7 @@ const PostDetail = () => {
       <div>{text}</div>
       <hr />
       <h2>Comments</h2>
-      {user ? (
+      {currentUser ? (
         <CommentForm />
       ) : (
         <div>
@@ -91,7 +93,7 @@ const PostDetail = () => {
           <br />
         </div>
       )}
-      <Comments />
+      <Comments currentUser={currentUser} admin={admin} />
     </div>
   );
 };
