@@ -26,6 +26,10 @@ const getPost = (id) => {
   return axios.get(`${API_URL}/posts/${id}`);
 };
 
+const deletePost = (id) => {
+  return axios.post(`${API_URL}/posts/${id}/delete`);
+};
+
 const getComments = (postId) => {
   return axios.get(`${API_URL}/posts/${postId}/comments`);
 };
@@ -51,6 +55,7 @@ const UserService = {
   getAdminBoard,
   getPosts,
   getPost,
+  deletePost,
   getComments,
   postComment,
   togglePublished,
