@@ -1,4 +1,3 @@
 - admin board
 	- create posts
-	- delete posts
 	- delete comments
