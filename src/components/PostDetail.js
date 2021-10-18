@@ -43,6 +43,16 @@ const PostDetail = () => {
     setPublished(post.published);
   }, [post.published]);
 
+  const [comments, setComments] = useState([]);
+  const reloadComments = () => {
+    UserService.getComments(postId).then((response) => {
+      setComments(response.data);
+    });
+  };
+  useEffect(() => {
+    reloadComments();
+  }, []);
+
   const handleChange = () => {
     UserService.togglePublished(postId);
     setPublished(!published);
@@ -81,7 +91,7 @@ const PostDetail = () => {
       <hr />
       <h2>Comments</h2>
       {currentUser ? (
-        <CommentForm />
+        <CommentForm reloadComments={reloadComments} />
       ) : (
         <div>
           <br />
@@ -93,7 +103,12 @@ const PostDetail = () => {
           <br />
         </div>
       )}
-      <Comments currentUser={currentUser} admin={admin} />
+      <Comments
+        currentUser={currentUser}
+        admin={admin}
+        comments={comments}
+        reloadComments={reloadComments}
+      />
     </div>
   );
 };

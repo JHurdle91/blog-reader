@@ -24,8 +24,16 @@ const CommentForm = (props) => {
     e.preventDefault();
 
     UserService.postComment(postId, currentUser.id, text).then(() => {
-      window.location.reload();
+      props.reloadComments();
+      setText("");
     });
+  };
+
+  const handleKeyPress = (e) => {
+    // trigger by pressing "enter"
+    if (e.which === 13) {
+      handleSubmit(e);
+    }
   };
 
   return (
@@ -41,6 +49,8 @@ const CommentForm = (props) => {
             className="form-control"
             type="textarea"
             placeholder="What an excellent post!"
+            value={text}
+            onKeyPress={handleKeyPress}
             required
           ></textarea>
         </div>

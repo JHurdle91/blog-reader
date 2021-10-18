@@ -1,26 +1,9 @@
 import uniqid from "uniqid";
 
-import { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
-
-import AuthService from "../services/auth.service";
-import UserService from "../services/user.service";
 import Comment from "./Comment";
 
 const Comments = (props) => {
-  const [comments, setComments] = useState([]);
-
-  const { postId } = useParams();
-
-  const reloadComments = () => {
-    UserService.getComments(postId).then((response) => {
-      setComments(response.data);
-    });
-  };
-
-  useEffect(() => {
-    reloadComments();
-  }, []);
+  const { comments, reloadComments } = props;
 
   return (
     <div className="Comments">
