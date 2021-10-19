@@ -23,8 +23,21 @@ const PostList = () => {
     }
   }, []);
 
+  const handleClick = () => {
+    window.location.href = "/posts/create";
+  };
+
   return (
     <div className="PostList">
+      {admin && (
+        <div>
+          <button className="btn btn-primary" onClick={handleClick}>
+            + New Post
+          </button>
+          <br />
+          <br />
+        </div>
+      )}
       {posts.map((post) => {
         if (post.published || admin) {
           return (

@@ -10,6 +10,17 @@ const getPost = (id) => {
   return axios.get(`${API_URL}/posts/${id}`);
 };
 
+const createPost = (userId, title, body, published) => {
+  return axios.post(`${API_URL}/posts/create`, {
+    params: {
+      userId,
+      title,
+      body,
+      published,
+    },
+  });
+};
+
 const deletePost = (id) => {
   return axios.post(`${API_URL}/posts/${id}/delete`);
 };
@@ -39,6 +50,7 @@ const togglePublished = (postId) => {
 const UserService = {
   getPosts,
   getPost,
+  createPost,
   deletePost,
   getComments,
   deleteComment,

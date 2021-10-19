@@ -1,6 +1,7 @@
 import { BrowserRouter, Switch, Route } from "react-router-dom";
 import App from "./App";
 import Navbar from "./components/Navbar";
+import PostCreate from "./components/PostCreate";
 import PostDetail from "./components/PostDetail";
 import Login from "./components/Login";
 import Register from "./components/Register";
@@ -18,6 +19,7 @@ const Routes = () => {
       <Switch>
         <Route exact path={["/", "/home"]} component={App} />
         <Route exact path={posts} component={App} />
+        <Route path={`${posts}/create`} component={PostCreate} />
         <Route path={`${posts}/:postId`} component={PostDetail} />
         <Route exact path={login} component={Login} />
         <Route exact path={register} component={Register} />

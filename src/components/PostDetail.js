@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import { useParams, Link } from "react-router-dom";
 import Switch from "react-switch";
 
@@ -44,14 +44,15 @@ const PostDetail = () => {
   }, [post.published]);
 
   const [comments, setComments] = useState([]);
-  const reloadComments = () => {
+  const reloadComments = useCallback(() => {
     UserService.getComments(postId).then((response) => {
       setComments(response.data);
     });
-  };
+  }, [postId]);
+
   useEffect(() => {
     reloadComments();
-  }, []);
+  }, [reloadComments]);
 
   const handleChange = () => {
     UserService.togglePublished(postId);
