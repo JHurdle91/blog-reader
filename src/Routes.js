@@ -5,9 +5,6 @@ import PostDetail from "./components/PostDetail";
 import Login from "./components/Login";
 import Register from "./components/Register";
 import Profile from "./components/Profile";
-import BoardUser from "./components/BoardUser";
-import BoardModerator from "./components/BoardModerator";
-import BoardAdmin from "./components/BoardAdmin";
 
 const Routes = () => {
   const posts = "/posts";
@@ -25,9 +22,6 @@ const Routes = () => {
         <Route exact path={login} component={Login} />
         <Route exact path={register} component={Register} />
         <Route exact path={profile} component={Profile} />
-        <Route path="/user" component={BoardUser} />
-        <Route path="/mod" component={BoardModerator} />
-        <Route path="/admin" component={BoardAdmin} />
       </Switch>
     </BrowserRouter>
   );
