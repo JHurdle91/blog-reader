@@ -4,18 +4,15 @@ import { Link } from "react-router-dom";
 import AuthService from "../services/auth.service";
 
 const Navbar = () => {
-  const [showAdminBoard, setShowAdminBoard] = useState(false);
   const [currentUser, setCurrentUser] = useState(undefined);
 
   useEffect(() => {
     const user = AuthService.getCurrentUser();
 
     if (user) {
-      setCurrentUser(user);
-
       const roles = [];
       user.roles.map((role) => roles.push(role.name));
-      setShowAdminBoard(roles.includes("ROLE_ADMIN"));
+      setCurrentUser(user);
     }
   }, []);
 
@@ -35,16 +32,7 @@ const Navbar = () => {
               Home
             </Link>
           </li>
-
-          {showAdminBoard && (
-            <li className="nav-item">
-              <Link to={"/admin"} className="nav-link">
-                Admin
-              </Link>
-            </li>
-          )}
         </div>
-
         {currentUser ? (
           <div className="navbar-nav ml-auto">
             <li className="nav-item">
