@@ -38,7 +38,12 @@ label {
   margin-left: 10px;
 }
 
-.PostCreateForm .btn {
+.PostCreate .btn, .PostUpdate .btn {
   margin-top: 5px;
   width: 100%;
+}
+
+.PostDetail .btn {
+  margin-top: 5px;
+  width: 170px;
 }

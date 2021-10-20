@@ -59,7 +59,11 @@ const PostDetail = () => {
     setPublished(!published);
   };
 
-  const handleClick = () => {
+  const handleClickEdit = () => {
+    window.location.href = `/posts/${postId}/edit`;
+  };
+
+  const handleClickDelete = () => {
     UserService.deletePost(postId).then(() => {
       window.location.href = `/posts/`;
     });
@@ -80,7 +84,11 @@ const PostDetail = () => {
             <span>{published ? "Published" : "Unpublished"}</span>
           </label>
           <br />
-          <button className="btn btn-danger" onClick={handleClick}>
+          <button className="btn btn-warning" onClick={handleClickEdit}>
+            Edit Post
+          </button>
+          <br />
+          <button className="btn btn-danger" onClick={handleClickDelete}>
             Delete Post
           </button>
         </div>

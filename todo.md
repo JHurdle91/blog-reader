@@ -1,4 +1,2 @@
 - admin board
-	- edit post
 	- rich text editor for posting and commenting
-	- make large post to test truncating on post list

@@ -1,15 +1,39 @@
 import { useState, useEffect } from "react";
+import { useParams } from "react-router-dom";
 
 import PostForm from "./PostForm";
 import PostFormButtons from "./PostFormButtons";
 import AuthService from "../services/auth.service";
 import UserService from "../services/user.service";
 
-const PostCreate = () => {
+const PostUpdate = () => {
   const [admin, setAdmin] = useState(false);
-  const [currentUser, setCurrentUser] = useState(false);
   const [title, setTitle] = useState("");
   const [body, setBody] = useState("");
+  const [post, setPost] = useState({
+    title: "",
+    timestamp: "",
+    timestamp_formatted: "",
+    text: "",
+    published: false,
+    user: {
+      username: "",
+      password: "",
+    },
+  });
+
+  const { postId } = useParams();
+
+  useEffect(() => {
+    UserService.getPost(postId).then((response) => {
+      setPost(response.data);
+    });
+  }, [postId]);
+
+  useEffect(() => {
+    setTitle(post.title);
+    setBody(post.text);
+  }, [post]);
 
   useEffect(() => {
     const user = AuthService.getCurrentUser();
@@ -17,7 +41,6 @@ const PostCreate = () => {
       const roles = [];
       user.roles.map((role) => roles.push(role.name));
       setAdmin(roles.includes("ROLE_ADMIN"));
-      setCurrentUser(user);
     }
   }, []);
 
@@ -29,40 +52,39 @@ const PostCreate = () => {
     setBody(value);
   };
 
-  const handleClickCancel = (e) => {
-    window.location.href = `/posts/`;
+  const handleClickCancel = () => {
+    window.location.href = `/posts/${postId}`;
   };
 
   const handleClickSave = () => {
     const published = false;
-    createPostAndRedirect(published);
+    updatePostAndRedirect(published);
   };
 
   const handleClickSaveAndPublish = () => {
     const published = true;
-    createPostAndRedirect(published);
+    updatePostAndRedirect(published);
   };
 
-  const createPostAndRedirect = (published) => {
+  const updatePostAndRedirect = (published) => {
     if (title && body) {
-      UserService.createPost(currentUser._id, title, body, published).then(
-        (response) => {
-          const postId = response.data._id;
-          window.location.href = `/posts/${postId}`;
-        }
-      );
+      UserService.updatePost(postId, title, body, published).then(() => {
+        window.location.href = `/posts/${postId}`;
+      });
     } else {
       alert("Title and Body are required.");
     }
   };
 
   return (
-    <div className="PostCreate">
-      <h1>New Post</h1>
+    <div className="PostUpdate">
+      <h1>Update Post</h1>
       <hr />
       {admin ? (
         <div>
           <PostForm
+            title={title}
+            body={body}
             onChangeTitle={handleChangeTitle}
             onChangeBody={handleChangeBody}
           />
@@ -74,10 +96,10 @@ const PostCreate = () => {
           />
         </div>
       ) : (
-        <div>Only the Admin can create new posts at this time...</div>
+        <div>Only the Admin can update posts at this time...</div>
       )}
     </div>
   );
 };
 
-export default PostCreate;
+export default PostUpdate;

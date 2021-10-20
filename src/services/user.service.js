@@ -21,6 +21,16 @@ const createPost = (userId, title, body, published) => {
   });
 };
 
+const updatePost = (postId, title, body, published) => {
+  return axios.post(`${API_URL}/posts/${postId}/update`, {
+    params: {
+      title,
+      body,
+      published,
+    },
+  });
+};
+
 const deletePost = (id) => {
   return axios.post(`${API_URL}/posts/${id}/delete`);
 };
@@ -51,6 +61,7 @@ const UserService = {
   getPosts,
   getPost,
   createPost,
+  updatePost,
   deletePost,
   getComments,
   deleteComment,

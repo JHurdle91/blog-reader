@@ -3,6 +3,7 @@ import App from "./App";
 import Navbar from "./components/Navbar";
 import PostCreate from "./components/PostCreate";
 import PostDetail from "./components/PostDetail";
+import PostUpdate from "./components/PostUpdate";
 import Login from "./components/Login";
 import Register from "./components/Register";
 import Profile from "./components/Profile";
@@ -20,6 +21,7 @@ const Routes = () => {
         <Route exact path={["/", "/home"]} component={App} />
         <Route exact path={posts} component={App} />
         <Route path={`${posts}/create`} component={PostCreate} />
+        <Route path={`${posts}/:postId/edit`} component={PostUpdate} />
         <Route path={`${posts}/:postId`} component={PostDetail} />
         <Route exact path={login} component={Login} />
         <Route exact path={register} component={Register} />
