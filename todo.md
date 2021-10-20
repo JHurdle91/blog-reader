@@ -1,2 +1,0 @@
-- admin board
-	- rich text editor for posting and commenting
