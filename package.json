@@ -1,6 +1,6 @@
 {
   "name": "blog-reader",
-  "homepage": "http://jhurdle91.github.io/blog-reader/",
+  "homepage": "http://jhurdle91.github.io/blog-reader",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
