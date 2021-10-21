@@ -19,7 +19,7 @@ const Routes = () => {
   const profile = "/profile";
 
   return (
-    <BrowserRouter basename={PUBLIC_URL}>
+    <BrowserRouter>
       <Navbar />
       <Switch>
         <Route exact path={["/", "/home"]} component={App} />
