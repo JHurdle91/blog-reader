@@ -1,4 +1,6 @@
+import React from "react";
 import { BrowserRouter, Switch, Route } from "react-router-dom";
+
 import App from "./App";
 import Navbar from "./components/Navbar";
 import PostCreate from "./components/PostCreate";

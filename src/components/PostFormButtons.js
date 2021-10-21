@@ -1,3 +1,5 @@
+import React from "react";
+
 const PostFormButtons = (props) => {
   const handleClickCancel = (e) => {
     e.preventDefault();

@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 
 import PostForm from "./PostForm";
 import PostFormButtons from "./PostFormButtons";

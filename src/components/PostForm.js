@@ -1,3 +1,5 @@
+import React from "react";
+
 const PostCreateForm = (props) => {
   const handleChangeTitle = (e) => {
     e.preventDefault();
