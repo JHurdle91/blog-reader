@@ -17,7 +17,7 @@ const Routes = () => {
   const profile = "/profile";
 
   return (
-    <BrowserRouter>
+    <BrowserRouter basename={process.env.PUBLIC_URL}>
       <Navbar />
       <Switch>
         <Route exact path={["/", "/home"]} component={App} />
