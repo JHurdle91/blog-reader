@@ -1,12 +1,15 @@
 import uniqid from "uniqid";
 
 import React, { useState, useEffect } from "react";
+import { useHistory } from "react-router-dom";
 
 import AuthService from "../services/auth.service";
 import UserService from "../services/user.service";
 import PostListItem from "./PostListItem";
 
 const PostList = () => {
+  const history = useHistory();
+
   const [posts, setPosts] = useState([]);
   const [admin, setAdmin] = useState(false);
 
@@ -23,8 +26,9 @@ const PostList = () => {
     }
   }, []);
 
-  const handleClick = () => {
-    window.location.href = "/posts/create";
+  const handleClick = (e) => {
+    e.preventDefault();
+    history.push(`/posts/create`);
   };
 
   return (

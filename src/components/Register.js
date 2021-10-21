@@ -1,4 +1,5 @@
 import React, { useState, useRef } from "react";
+import { useHistory } from "react-router-dom";
 import Form from "react-validation/build/form";
 import Input from "react-validation/build/input";
 import CheckButton from "react-validation/build/button";
@@ -38,6 +39,7 @@ const vpassword = (value) => {
 const Register = (props) => {
   const form = useRef();
   const checkBtn = useRef();
+  const history = useHistory();
 
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
@@ -70,7 +72,7 @@ const Register = (props) => {
           setMessage(response.data.message);
           setSuccessful(true);
           AuthService.login(username, password).then(() => {
-            props.history.push("/profile");
+            history.push("/profile");
             window.location.reload();
           });
         },

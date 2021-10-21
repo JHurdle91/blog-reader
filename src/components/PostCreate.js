@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { useHistory } from "react-router-dom";
 
 import PostForm from "./PostForm";
 import PostFormButtons from "./PostFormButtons";
@@ -6,6 +7,8 @@ import AuthService from "../services/auth.service";
 import UserService from "../services/user.service";
 
 const PostCreate = () => {
+  const history = useHistory();
+
   const [admin, setAdmin] = useState(false);
   const [currentUser, setCurrentUser] = useState(false);
   const [title, setTitle] = useState("");
@@ -30,7 +33,7 @@ const PostCreate = () => {
   };
 
   const handleClickCancel = (e) => {
-    window.location.href = `/posts/`;
+    history.push("/posts/");
   };
 
   const handleClickSave = () => {
@@ -48,7 +51,7 @@ const PostCreate = () => {
       UserService.createPost(currentUser._id, title, body, published).then(
         (response) => {
           const postId = response.data._id;
-          window.location.href = `/posts/${postId}`;
+          history.push(`/posts/${postId}`);
         }
       );
     } else {

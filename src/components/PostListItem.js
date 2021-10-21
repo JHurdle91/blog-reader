@@ -1,10 +1,13 @@
 import React, { useState, useEffect } from "react";
+import { useHistory } from "react-router-dom";
 import Switch from "react-switch";
 
 import AuthService from "../services/auth.service";
 import UserService from "../services/user.service";
 
 const PostListItem = (props) => {
+  const history = useHistory();
+
   const [comments, setComments] = useState([]);
   const [admin, setAdmin] = useState(false);
 
@@ -26,7 +29,7 @@ const PostListItem = (props) => {
   }, [_id]);
 
   const handleClick = () => {
-    window.location.href = `/posts/${_id}`;
+    history.push(`/posts/${_id}`);
   };
 
   const handleChange = () => {

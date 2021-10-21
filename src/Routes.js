@@ -10,6 +10,8 @@ import Login from "./components/Login";
 import Register from "./components/Register";
 import Profile from "./components/Profile";
 
+const PUBLIC_URL = process.env.REACT_APP_PUBLIC_URL;
+
 const Routes = () => {
   const posts = "/posts";
   const login = "/login";
@@ -17,7 +19,7 @@ const Routes = () => {
   const profile = "/profile";
 
   return (
-    <BrowserRouter basename={process.env.PUBLIC_URL}>
+    <BrowserRouter basename={PUBLIC_URL}>
       <Navbar />
       <Switch>
         <Route exact path={["/", "/home"]} component={App} />

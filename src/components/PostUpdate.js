@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useHistory } from "react-router-dom";
 
 import PostForm from "./PostForm";
 import PostFormButtons from "./PostFormButtons";
@@ -7,6 +7,9 @@ import AuthService from "../services/auth.service";
 import UserService from "../services/user.service";
 
 const PostUpdate = () => {
+  const { postId } = useParams();
+  const history = useHistory();
+
   const [admin, setAdmin] = useState(false);
   const [title, setTitle] = useState("");
   const [body, setBody] = useState("");
@@ -21,8 +24,6 @@ const PostUpdate = () => {
       password: "",
     },
   });
-
-  const { postId } = useParams();
 
   useEffect(() => {
     UserService.getPost(postId).then((response) => {
@@ -53,7 +54,7 @@ const PostUpdate = () => {
   };
 
   const handleClickCancel = () => {
-    window.location.href = `/posts/${postId}`;
+    history.push(`/posts/${postId}`);
   };
 
   const handleClickSave = () => {
@@ -69,7 +70,7 @@ const PostUpdate = () => {
   const updatePostAndRedirect = (published) => {
     if (title && body) {
       UserService.updatePost(postId, title, body, published).then(() => {
-        window.location.href = `/posts/${postId}`;
+        history.push(`/posts/${postId}`);
       });
     } else {
       alert("Title and Body are required.");

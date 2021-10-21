@@ -1,14 +1,15 @@
 import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { useHistory, Link } from "react-router-dom";
 
 import AuthService from "../services/auth.service";
 
 const Navbar = () => {
+  const history = useHistory();
+
   const [currentUser, setCurrentUser] = useState(undefined);
 
   useEffect(() => {
     const user = AuthService.getCurrentUser();
-
     if (user) {
       const roles = [];
       user.roles.map((role) => roles.push(role.name));
@@ -16,8 +17,11 @@ const Navbar = () => {
     }
   }, []);
 
-  const logOut = () => {
+  const logOut = (e) => {
+    e.preventDefault();
     AuthService.logout();
+    setCurrentUser(undefined);
+    history.push("/login");
   };
 
   return (
@@ -41,9 +45,9 @@ const Navbar = () => {
               </Link>
             </li>
             <li className="nav-item">
-              <a href="/login" className="nav-link" onClick={logOut}>
+              <Link to="/login" className="nav-link" onClick={logOut}>
                 Log Out
-              </a>
+              </Link>
             </li>
           </div>
         ) : (

@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useCallback } from "react";
-import { useParams, Link } from "react-router-dom";
+import { useParams, useHistory, Link } from "react-router-dom";
 import Switch from "react-switch";
 
 import Comments from "./Comments";
@@ -8,6 +8,9 @@ import AuthService from "../services/auth.service";
 import UserService from "../services/user.service";
 
 const PostDetail = () => {
+  const history = useHistory();
+  const { postId } = useParams();
+
   const [admin, setAdmin] = useState(false);
   const [currentUser, setCurrentUser] = useState(undefined);
   const [post, setPost] = useState({
@@ -21,8 +24,6 @@ const PostDetail = () => {
       password: "",
     },
   });
-
-  const { postId } = useParams();
 
   useEffect(() => {
     UserService.getPost(postId).then((response) => {
@@ -60,12 +61,12 @@ const PostDetail = () => {
   };
 
   const handleClickEdit = () => {
-    window.location.href = `/posts/${postId}/edit`;
+    history.push(`/posts/${postId}/edit`);
   };
 
   const handleClickDelete = () => {
     UserService.deletePost(postId).then(() => {
-      window.location.href = `/posts/`;
+      history.push(`/posts/`);
     });
   };
 
