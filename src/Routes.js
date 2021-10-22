@@ -1,5 +1,5 @@
 import React from "react";
-import { BrowserRouter, Switch, Route } from "react-router-dom";
+import { HashRouter, Switch, Route } from "react-router-dom";
 
 import App from "./App";
 import Navbar from "./components/Navbar";
@@ -19,7 +19,7 @@ const Routes = () => {
   const profile = "/profile";
 
   return (
-    <BrowserRouter basename={PUBLIC_URL}>
+    <HashRouter basename={PUBLIC_URL}>
       <Navbar />
       <Switch>
         <Route exact path={["/", "/home"]} component={App} />
@@ -31,7 +31,7 @@ const Routes = () => {
         <Route exact path={register} component={Register} />
         <Route exact path={profile} component={Profile} />
       </Switch>
-    </BrowserRouter>
+    </HashRouter>
   );
 };
 
