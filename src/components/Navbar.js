@@ -63,6 +63,22 @@ const Navbar = () => {
                 Sign Up
               </Link>
             </li>
+            <li className="nav-item">
+              <a
+                href="https://github.com/JHurdle91/blog-reader"
+                className="nav-link"
+              >
+                Frontend Source
+              </a>
+            </li>
+            <li className="nav-item">
+              <a
+                href="https://github.com/JHurdle91/blog-api"
+                className="nav-link"
+              >
+                Backend Source
+              </a>
+            </li>
           </div>
         )}
       </nav>
