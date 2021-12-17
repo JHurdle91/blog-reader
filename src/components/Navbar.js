@@ -57,30 +57,31 @@ const Navbar = () => {
                 Log In
               </Link>
             </li>
-
             <li className="nav-item">
               <Link to={"/register"} className="nav-link">
                 Sign Up
               </Link>
             </li>
-            <li className="nav-item">
-              <a
-                href="https://github.com/JHurdle91/blog-reader"
-                className="nav-link"
-              >
-                Frontend Source
-              </a>
-            </li>
-            <li className="nav-item">
-              <a
-                href="https://github.com/JHurdle91/blog-api"
-                className="nav-link"
-              >
-                Backend Source
-              </a>
-            </li>
           </div>
         )}
+        <div className="navbar-nav mr-auto">
+          <li className="nav-item">
+            <a
+              href="https://github.com/JHurdle91/blog-reader"
+              className="nav-link"
+            >
+              Frontend Source
+            </a>
+          </li>
+          <li className="nav-item">
+            <a
+              href="https://github.com/JHurdle91/blog-api"
+              className="nav-link"
+            >
+              Backend Source
+            </a>
+          </li>
+        </div>
       </nav>
 
       <div className="container mt-3"></div>
